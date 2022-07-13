@@ -1,0 +1,13 @@
+- hosts: ec2
+  vars:
+    - webserver: "nginx"
+  tasks:
+    - package: 
+         name: "{{ webserver }}"
+         state: present
+    - copy:
+         src: "index.html"
+         dest: "/var/www/html/"
+    - service:
+         name: "nginx"
+         state: "started"
